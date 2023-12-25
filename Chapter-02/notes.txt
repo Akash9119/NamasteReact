@@ -1,0 +1,12 @@
+npm statnds more then node package manager.
+node package management is just a park of npm.
+
+package.json and package-lock.json are used to keep track of package and dependencies versions.
+package.json store the versions of the package whicha are currently being used.
+package-lock.json store the versions of the package which are used while creation of the project.
+node_modules is a place where the dependencies of the dependencies are stored which is required in the project.
+
+Major, minor and patch represent the different releases of a package.
+npm uses the tilde (~) and caret (^) to designate which patch and minor versions to use respectively.
+So if you see ~1.0. 2 it means to install version 1.0. 2 or the latest patch version such as 1.0.
+If you see ^1.0.2 it means to install version 1.0.2 or the latest minor or patch version such as 1.1.0.
