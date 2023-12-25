@@ -1,0 +1,8 @@
+JSX is HTML like syntax but not HTML
+JSX stands for JavaScript Syntax Externtion
+JSX sanitaizes the data so the malesius code will not be run in the browser.
+
+JSX is converted to the normal JavaScript with help of the babel library.
+Babel is a open source JavaScript compiler.
+
+Component compositoin is a way to render a component inside another component.
