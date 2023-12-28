@@ -1,17 +1,16 @@
 import React from "react";
-import PizzaImage from "../Resources/PizzaImage.jpeg";
 
-const RestaurantCard = () => {
+const RestaurantCard = (props) => {
+  const { img, name, categories, rating, deliveryTime } = props;
   return (
-    <div className="restaurantCard w-[200px] h-[300px] m-4 hover:cursor-pointer hover:border-2 bg-slate-50">
-    <img className="p-2" src={PizzaImage} alt="PizzaImage" />
-    <h1 className="p-1">Pizza Palace</h1>
-    <h2 className="p-1">Fast Food, Italian, Europe</h2>
-    <h3 className="p-1">4.5 Stars</h3>
-    <h3 className="p-1">14 Minutes</h3>
-    <button className="bg-slate-600 text-white px-2 py-1 rounded-lg ml-12 mt-1 text-md">Order Now</button>
+    <div className="restaurantCard w-[200px] m-6 hover:cursor-pointer hover:bg-slate-300 bg-slate-50 p-3 rounded-md">
+      <img className="p-2" src={img} alt="FoodItem" />
+      <h1 className="p-1">{name}</h1>
+      <h2 className="p-1">{categories.join(", ")}</h2>
+      <h3 className="p-1">{rating}</h3>
+      <h3 className="p-1">{`Delivery Time: ${deliveryTime} mins`}</h3>
     </div>
-  )
+  );
 }
 
-export default RestaurantCard
+export default RestaurantCard;
