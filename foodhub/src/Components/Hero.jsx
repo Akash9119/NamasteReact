@@ -1,33 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
-
-const resInfo = [
-  {
-    id:1,
-    name: "Burger Palace",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrBZNZ_wOKuVqM9FaBFyrvZ1k8QyMcBQP8Lw&usqp=CAU",
-    categories: ["Fast Food", "Burger", "Cold Drink", "Chicken"],
-    rating: "4.4 Stars",
-    deliveryTime: 14
-  },
-  {
-    id:2,
-    name: "Pizzq Palace",
-    img: "https://img.freepik.com/free-psd/freshly-baked-pizza-with-cut-slice-isolated-transparent-background_191095-9041.jpg?size=338&ext=jpg&ga=GA1.1.1546980028.1703635200&semt=sph",
-    categories: ["Fast Food", "Pizza", "Italian", "Cold Drink", "Vegetables"],
-    rating: "4.8 Stars",
-    deliveryTime: 23
-  }
-]
+import resInfo from "../utils/mockRestaurantData";
 
 const Hero = () => {
+  const [resData, setResData] = useState(resInfo);
+  const filterTopRated = () => {
+    setResData(resData.filter(res => parseFloat(res.rating) >= 4.5));
+  }
+
+  useEffect(() => {
+    const dataFetcher = async() => {
+      const data = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.3104294&lng=73.1813327&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
+      const jsonData = await data.json();
+      console.log(jsonData);
+    }
+    dataFetcher();
+  }, [])
+
   return (
     <div className="hero">
       <div className="search-container p-1 flex justify-center">
         <div className="search p-2 m-3 border-2 rounded-full w-[40%] h-9"></div>
       </div>
+      <div className="filter flex justify-center">
+        <button className="p-1 bg-orange-400 border-black border-2 rounded-2xl" onClick={filterTopRated} >
+          Top Rated Restaurant
+        </button>
+      </div>
       <div className="restaurantCardContainer flex flex-wrap">
-        {resInfo.map((restaurant) => (
+        {resData.map((restaurant) => (
           <RestaurantCard key={restaurant.id} {...restaurant} />
         ))}
       </div>

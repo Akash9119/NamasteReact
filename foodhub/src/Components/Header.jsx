@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo from "../Resources/FoodHubLogo.png";
+import Logo from "../Images/FoodHubLogo.png";
 
 const Header = () => {
   return (

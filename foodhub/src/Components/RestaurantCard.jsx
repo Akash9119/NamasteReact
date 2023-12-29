@@ -1,7 +1,6 @@
 import React from "react";
 
-const RestaurantCard = (props) => {
-  const { img, name, categories, rating, deliveryTime } = props;
+const RestaurantCard = ({img, name, categories, rating, deliveryTime}) => {
   return (
     <div className="restaurantCard w-[200px] m-6 hover:cursor-pointer hover:bg-slate-300 bg-slate-50 p-3 rounded-md">
       <img className="p-2" src={img} alt="FoodItem" />
