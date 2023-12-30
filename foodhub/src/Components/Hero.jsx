@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import resInfo from "../utils/mockRestaurantData";
+import Shimmer from "./Shimmer";
 
 const Hero = () => {
   const [resData, setResData] = useState(resInfo);
+  const [filterRes, setFilterRes] = useState([]);
+  let searchData = resData;
+  const [seachFilter, setSeachFilter] = useState("");
   const filterTopRated = () => {
     setResData(resData.filter(res => parseFloat(res.rating) >= 4.5));
+  }
+
+  const filteredData = () => {
+    const filter = searchData.filter(res => (res.name.toLowerCase().includes(seachFilter.toLowerCase())));
+    setFilterRes(filter);
   }
 
   useEffect(() => {
@@ -17,21 +26,33 @@ const Hero = () => {
     dataFetcher();
   }, [])
 
-  return (
+
+  return resData.length === 0 ? <Shimmer /> : (
     <div className="hero">
       <div className="search-container p-1 flex justify-center">
         <div className="search p-2 m-3 border-2 rounded-full w-[40%] h-9"></div>
       </div>
-      <div className="filter flex justify-center">
+      <div className="filter flex justify-around">
         <button className="p-1 bg-orange-400 border-black border-2 rounded-2xl" onClick={filterTopRated} >
           Top Rated Restaurant
         </button>
+        <div>
+          <input className="bg-slate-200 mx-6 px-3 rounded-md border-black border-2" type="text" name="search" value={seachFilter} onChange={(e) => setSeachFilter(e.target.value)}/>
+          <button className="bg-red-600 text-white px-4 rounded-sm border-black border-2 font-bold" onClick={filteredData}>Search</button>
+        </div>
       </div>
       <div className="restaurantCardContainer flex flex-wrap">
-        {resData.map((restaurant) => (
-          <RestaurantCard key={restaurant.id} {...restaurant} />
-        ))}
-      </div>
+  {filterRes.length > 0 ? (
+    filterRes.map((restaurant) => (
+      <RestaurantCard key={restaurant.id} {...restaurant} />
+    ))
+  ) : (
+    resData.map((restaurant) => (
+      <RestaurantCard key={restaurant.id} {...restaurant} />
+    ))
+  )}
+</div>
+
     </div>
   );
 };

@@ -9,7 +9,7 @@ const resInfo = [
     },
     {
       id:2,
-      name: "Pizzq Palace",
+      name: "Pizza Palace",
       img: "https://img.freepik.com/free-psd/freshly-baked-pizza-with-cut-slice-isolated-transparent-background_191095-9041.jpg?size=338&ext=jpg&ga=GA1.1.1546980028.1703635200&semt=sph",
       categories: ["Fast Food", "Pizza", "Italian", "Cold Drink", "Vegetables"],
       rating: "4.8 Stars",
