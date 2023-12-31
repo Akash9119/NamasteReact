@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import Logo from "../Images/FoodHubLogo.png";
 import { Link } from 'react-router-dom';
+import useOnlineStatus from '../utils/useOnlineStatus';
 
 const Header = () => {
   const [logButton, setLogButton] = useState("Login");
+  const onlineStatus = useOnlineStatus();
 
   const updateButton = () => {
     logButton === "Login" ? setLogButton("LogOut") : setLogButton("Login");
@@ -13,6 +15,7 @@ const Header = () => {
         <div className="image w-12"><img src={Logo} alt="FoodHubLogo"/></div>
         <div className="navBar flex">
         <ul className='flex'>
+            <li className='navItem p-2 font-bold'>Network Status: {onlineStatus ? '🟢' : '🔴'} </li>
             <li className='navItem p-2 font-bold'><Link to="/">Home</Link></li>
             <li className='navItem p-2 font-bold'><Link to="/about">About Us</Link></li>
             <li className='navItem p-2 font-bold'><Link to="/contact">Contact Us</Link></li>

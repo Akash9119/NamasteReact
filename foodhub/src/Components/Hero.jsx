@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import resInfo from "../utils/mockRestaurantData";
 import Shimmer from "./Shimmer";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Hero = () => {
   const [resData, setResData] = useState(resInfo);
@@ -26,6 +27,10 @@ const Hero = () => {
     dataFetcher();
   }, [])
 
+  const onlinStatus = useOnlineStatus();
+  if(onlinStatus === false) {
+    return <h1 className="text-bold text-3xl m-8 p-2">Check Your Internet Connection...</h1>
+  }
 
   return resData.length === 0 ? <Shimmer /> : (
     <div className="hero">
